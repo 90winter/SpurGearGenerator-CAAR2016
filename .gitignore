@@ -1,0 +1,40 @@
+# Local CATIA / system runtime DLLs (must stay local, never upload)
+*.dll
+CAA_GearPair/win_b64/code/bin/netapi32.dll
+
+# Generated CAD outputs & test artifacts (keep only the two seed templates)
+Output_CAA/
+CodexGear/Output/
+CodexGear/rad*/
+CodexGear/GearTest.txt
+*.CATPart
+*.CATProduct
+!CAA_GearPair/win_b64/code/bin/GearSeed.CATPart
+!CodexGear/EquationSeed.CATPart
+
+# CAA / mkmk / MSVC build intermediates & debug artifacts
+CAA_GearPair/ToolsData/
+CAA_GearPair/Install_config_win_b64/
+CAA_GearPair/win_b64/various/
+CAA_GearPair/win_b64/ImportedInterfaces/
+CAA_GearPair/GearPairGen.edu/*/Objects/
+CAA_GearPair/GearPairGen.edu/*/LocalGenerated/
+CAA_GearPair/GearPairGen.edu/ProtectedGenerated/
+CAA_GearPair/GearPairGen.edu/PrivateGenerated/
+CAA_GearPair/GearPairGen.edu/PublicGenerated/
+*.pdb
+*.exp
+*.lib
+*.obj
+*.idb
+*.ilk
+*.manifest
+*.log
+*.tmp
+
+# Editor & OS clutter
+.vs/
+.vscode/
+Thumbs.db
+desktop.ini
+.DS_Store
