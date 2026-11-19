@@ -6,11 +6,10 @@
 
 ## 1. 仓库真相源（Source of Truth）
 
-- **当前活跃主线**：根目录 [`GearPairCAA.exe`](GearPairCAA.exe) + [`CAA_GearPair/`](CAA_GearPair/)
+- **核心工程**：根目录 [`GearPairCAA.exe`](GearPairCAA.exe) + [`CAA_GearPair/`](CAA_GearPair/)
   - C++ 建模内核：[`CAA_GearPair/GearPairGen.edu/GearPairWorker.m/src/GearPairWorker.cpp`](CAA_GearPair/GearPairGen.edu/GearPairWorker.m/src/GearPairWorker.cpp)
   - WinForms 桌面前端：[`CAA_GearPair/GearPairCAA_UI.vb`](CAA_GearPair/GearPairCAA_UI.vb)
   - CAA 配置：[`IdentityCard.xml`](CAA_GearPair/GearPairGen.edu/IdentityCard/IdentityCard.xml)、[`Imakefile.mk`](CAA_GearPair/GearPairGen.edu/GearPairWorker.m/Imakefile.mk)、[`CATIAV5Level.lvl`](CAA_GearPair/CATIAV5Level.lvl)
-- **冻结的历史原型**：[`CodexGear/`](CodexGear/)（VB.NET / VBS + COM Automation）。除非用户明确要求修改 `CodexGear`，否则**不要改动该目录**，所有新功能与缺陷修复只落在 `CAA_GearPair/`。
 - **推荐首轮阅读顺序**：`AGENTS.md`（本文件）→ [`HANDOFF.md`](HANDOFF.md) → 按任务只读取 [`GearPairWorker.cpp`](CAA_GearPair/GearPairGen.edu/GearPairWorker.m/src/GearPairWorker.cpp) 或 [`GearPairCAA_UI.vb`](CAA_GearPair/GearPairCAA_UI.vb) 的目标行区间。
 
 ---
@@ -23,7 +22,7 @@
    - 种子内 `LogSpiral_Equation` 几何集、`LogSpiral_Standard_Equation` 曲线与 `LogSpiral_X_StandardEquation` / `LogSpiral_Y_StandardEquation` / `LogSpiral_Z_StandardEquation` 3 条 Law 是 `BuildSingleGearDoc` 的硬依赖契约。
 3. **保护运行时视图目录与 Git 洁净度**：
    - 保留 `CAA_GearPair/win_b64/code/dictionary/`、`productIC/`、`control/`，否则 `CATSTART` + `GearPairWorker.exe` 会启动失败。
-   - 严格遵守 `.gitignore`：严禁提交任何 `*.dll`、生成输出（`Output_CAA/`、`*.CATPart` 除两个种子外）、`mkmk` 构建中间目录（`Objects/`、`LocalGenerated/`、`ToolsData/`、`Install_config_win_b64/`、`various/`、`ImportedInterfaces/`）以及 `*.pdb`/`*.exp`/`*.lib`/`*.log`/`*.tmp`。
+   - 严格遵守 `.gitignore`：严禁提交任何 `*.dll`、生成输出（`Output_CAA/`、`*.CATPart` 除种子模板 `GearSeed.CATPart` 外）、`mkmk` 构建中间目录（`Objects/`、`LocalGenerated/`、`ToolsData/`、`Install_config_win_b64/`、`various/`、`ImportedInterfaces/`）以及 `*.pdb`/`*.exp`/`*.lib`/`*.log`/`*.tmp`。
 4. **注意 CATIA CKE 单位差异**：
    - `CATICkeParmFactory::CreateLength` 使用 **米 (m)**（需 `/ 1000.0`），`CreateAngle` 使用 **弧度 (rad)**。
    - `CATIPad` 拉伸长度、CGM 体积/包围盒检查、界面/任务文件数值均使用 **毫米 (mm)** 与 **度 (°)**。

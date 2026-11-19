@@ -2,15 +2,11 @@
 *.dll
 CAA_GearPair/win_b64/code/bin/netapi32.dll
 
-# Generated CAD outputs & test artifacts (keep only the two seed templates)
+# Generated CAD outputs & test artifacts (keep only the seed template)
 Output_CAA/
-CodexGear/Output/
-CodexGear/rad*/
-CodexGear/GearTest.txt
 *.CATPart
 *.CATProduct
 !CAA_GearPair/win_b64/code/bin/GearSeed.CATPart
-!CodexGear/EquationSeed.CATPart
 
 # CAA / mkmk / MSVC build intermediates & debug artifacts
 CAA_GearPair/ToolsData/

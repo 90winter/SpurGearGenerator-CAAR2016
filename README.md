@@ -1,6 +1,6 @@
 # 齿轮生产 — CATIA V5-6R2016 (B26) 直齿轮对生成器
 
-基于 **CATIA V5-6R2016 (`B26`)** 的纯解析渐开线直齿轮对生成工具。主线采用 **CAA C++ 独立批处理内核 (`GearPairWorker.exe`) + .NET Framework 4.0 WinForms 桌面端 (`GearPairCAA.exe`)**，保留早期 **VB.NET / COM Automation 原型 (`CodexGear/`)** 供对照参考。
+基于 **CATIA V5-6R2016 (`B26`)** 的纯解析渐开线直齿轮对生成工具，采用 **CAA C++ 独立批处理内核 (`GearPairWorker.exe`) + .NET Framework 4.0 WinForms 桌面端 (`GearPairCAA.exe`)**。
 
 ---
 
@@ -33,30 +33,22 @@
 ├── HANDOFF.md                                # 详细工程交接文档（架构、源码索引、排坑与待办）
 ├── AGENTS.md                                 # AI 智能体接手指南（硬约束、构建验证命令、修改清单）
 ├── .gitignore                                # 排除输出零件、构建缓存与本机运行时文件
-├── GearPairCAA.exe                           # 主线 WinForms 桌面端可执行文件
-├── CAA_GearPair/                             # 【主线】CATIA B26 CAA C++ 内核 + WinForms 前端
-│   ├── CATIAV5Level.lvl                      # B26 级次定义
-│   ├── build_caa_gear.bat                    # VS2012 x64 + TCK + mkmk 一键编译脚本
-│   ├── run_gear_caa.bat                      # 无界面命令行冒烟测试脚本
-│   ├── GearPairCAA_UI.vb                     # WinForms 前端源码 (419 行)
-│   ├── GearPair.ico                          # 双齿轮啮合图标
-│   ├── GearPairGen.edu/
-│   │   ├── IdentityCard/IdentityCard.xml     # CAA Framework 依赖声明
-│   │   └── GearPairWorker.m/
-│   │       ├── Imakefile.mk                  # LOAD MODULE 链接库清单
-│   │       └── src/GearPairWorker.cpp        # CAA C++ 核心建模源码 (1,641 行)
-│   └── win_b64/                              # CAA 运行时视图（dictionary / productIC / control / bin）
-│       └── code/bin/
-│           ├── GearPairWorker.exe            # 编译好的 CAA C++ 批处理内核
-│           └── GearSeed.CATPart              # 含原生 GSMCurveEquations 的种子模板
-└── CodexGear/                                # 【早期原型】VB.NET / VBS + COM Automation 方案（保留参考）
-    ├── README.md
-    ├── 开发与使用交接.md
-    ├── GearPairR.exe                         # 早期 VB.NET 圆角版可执行文件
-    ├── GearPairUI.vb                         # 早期 VB.NET 源码
-    ├── Build-SpurPair.vbs                    # VBS 原型脚本
-    ├── Verify-SpurPair.vbs                   # VBS 验证脚本
-    └── EquationSeed.CATPart                  # 早期种子模板
+├── GearPairCAA.exe                           # WinForms 桌面端可执行文件
+└── CAA_GearPair/                             # CATIA B26 CAA C++ 内核 + WinForms 前端
+    ├── CATIAV5Level.lvl                      # B26 级次定义
+    ├── build_caa_gear.bat                    # VS2012 x64 + TCK + mkmk 一键编译脚本
+    ├── run_gear_caa.bat                      # 无界面命令行冒烟测试脚本
+    ├── GearPairCAA_UI.vb                     # WinForms 前端源码 (419 行)
+    ├── GearPair.ico                          # 双齿轮啮合图标
+    ├── GearPairGen.edu/
+    │   ├── IdentityCard/IdentityCard.xml     # CAA Framework 依赖声明
+    │   └── GearPairWorker.m/
+    │       ├── Imakefile.mk                  # LOAD MODULE 链接库清单
+    │       └── src/GearPairWorker.cpp        # CAA C++ 核心建模源码 (1,641 行)
+    └── win_b64/                              # CAA 运行时视图（dictionary / productIC / control / bin）
+        └── code/bin/
+            ├── GearPairWorker.exe            # 编译好的 CAA C++ 批处理内核
+            └── GearSeed.CATPart              # 含原生 GSMCurveEquations 的种子模板
 ```
 
 > 说明：本仓库遵循 `.gitignore`，**不包含**测试输出目录（`Output_CAA/`）、`mkmk`/MSVC 编译中间产物以及与本机环境相关的运行时 `.dll` 文件；本机若需独立运行 `CAA_GearPair`，需确保 CATIA B26 运行环境完整（详见 [HANDOFF.md](HANDOFF.md)）。
@@ -102,4 +94,3 @@ cmd /c "CAA_GearPair\run_gear_caa.bat" "<输出目录>" <m> <z1> <z2> <b1> <b2> 
 
 - **面向研发/维护工程师**：请阅读 [HANDOFF.md](HANDOFF.md)，包含完整数据流图、`GEAR_JOB_FILE` 协议、1,641 行 C++ 内核与 419 行 VB.NET 前端逐函数索引、环境迁移指南、关键排坑记录与后续演进建议。
 - **面向 AI 编程智能体**：请优先阅读 [AGENTS.md](AGENTS.md)，包含工作区真源边界、不可破坏的不变量、一键构建/验证命令及端到端新增参数检查表。
-- **早期 COM 原型参考**：见 [CodexGear/开发与使用交接.md](CodexGear/开发与使用交接.md)。
